@@ -1,4 +1,6 @@
 import streamlit as st
+st.title('TIC TAC TOE')
+st.header('By CrunchyChocoz')
 container = st.container()
 with container:
   st.title('Container')
