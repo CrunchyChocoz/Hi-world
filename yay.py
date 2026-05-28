@@ -2,7 +2,7 @@ import streamlit as st
 container = st.container()
 with container:
   st.title('Container')
-c1,c2,c3 = st.columns(3)
+c1,c2,c3 = st.columns(3, border=True)
 with c1:
   st.title('GitHub')
 with c2:
