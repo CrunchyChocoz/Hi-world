@@ -1,4 +1,5 @@
 import streamlit as st
+LoginDB = st.connection('LoginDB', type='kv')
 st.set_page_config(layout='wide')
 
 c1,c2,c3 = st.columns(3)
@@ -12,8 +13,8 @@ with c5:
 c6,c7 = st.columns(2,border=True)
 with c6:
   st.markdown('## LOGIN')
+  
   with st.form('login',border=True):
-    
     c6_00,c6_01 = st.columns([1,3], border=True)
     with c6_00:
       st.markdown('ALIAS:')
@@ -30,8 +31,9 @@ with c6:
     if submit1:
       st.write('!!!')
 with c7:
+  st.markdown('## REGISTER')
+  
   with st.form('register', border=True):
-    st.markdown('## REGISTER')
     c7_00,c7_01 = st.columns([1,3], border=True)
     with c7_00:
       st.markdown('ALIAS:')
@@ -46,6 +48,16 @@ with c7:
     
     submit2 = st.form_submit_button('SUBMIT')
     if submit2:
-      st.write('!!!!')
+      if not reg_user.strip() or not reg_pass.strip():
+        st.stop()
+      for i in LoginDB.keys():
+        if reg_user.lower().strip() == i.lower().strip()
+        st.error('Alias already taken')
+        st.stop()
+      if len(reg_pass) <= 4:
+        st.error('Password have more than 4 characters')
+        st.stop()
+      LoginDB.set(reg_user,reg_pass)
+      st.success('Alias (',reg_user,') has been registered.')
 
 st.sidebar.title('SidebaR')
