@@ -51,9 +51,9 @@ with c7:
       if not reg_user.strip() or not reg_pass.strip():
         st.stop()
       for i in LoginDB.keys():
-        if reg_user.lower().strip() == i.lower().strip()
-        st.error('Alias already taken')
-        st.stop()
+        if reg_user.lower().strip() == i.lower().strip():
+          st.error('Alias already taken')
+          st.stop()
       if len(reg_pass) <= 4:
         st.error('Password have more than 4 characters')
         st.stop()
