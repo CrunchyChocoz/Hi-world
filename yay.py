@@ -15,6 +15,9 @@ with c3:
     with c32:
       username = st.text_input(label='', label_visibility='collapsed')
       password = st.text_label(label='', label_visibility='collapsed')
+    submit1 = st.form_submit_button('SUBMIT')
+    if submit1:
+      st.write('!!!')
 with c4:
   with st.form('register', border=True):
     c41,c42 = st.columns([1,4], border=True)
@@ -24,7 +27,7 @@ with c4:
     with c42:
       username = st.text_input(label='', label_visibility='collapsed')
       password = st.text_input(label='', label_visibility='collapsed')
-    submit_alias = st.form_submit_button('SUBMIT')
-    if submit_alias:
+    submit2 = st.form_submit_button('SUBMIT')
+    if submit2:
       st.write('!!!!')
 st.sidebar.title('SidebaR')
