@@ -5,5 +5,4 @@ container = st.container()
 with container:
   st.title('Container')
 c1,c2,c3 = st.columns(3, border=True)
-  st.write('Complicated')
 st.sidebar.title('SidebaR')
