@@ -1,4 +1,6 @@
 import streamlit as st
+st.set_page_config(layout='wide')
+
 st.title('TIC TAC TOE')
 
 c1,c2 = st.columns([1,3], vertical_alignment='top', border=True)
