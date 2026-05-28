@@ -14,7 +14,7 @@ with c3:
       st.markdown('PASSWORD:')
     with c32:
       username = st.text_input(label='', label_visibility='collapsed')
-      password = st.text_label(label='', label_visibility='collapsed')
+      password = st.text_input(label='', label_visibility='collapsed')
     submit1 = st.form_submit_button('SUBMIT')
     if submit1:
       st.write('!!!')
