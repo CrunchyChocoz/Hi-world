@@ -12,7 +12,7 @@ with c5:
 c6,c7 = st.columns(2,border=True)
 with c6:
   with st.form('login',border=True):
-    
+    st.markdown('## LOGIN')
     c6_00,c6_01 = st.columns([1,3], border=True)
     with c6_00:
       st.markdown('ALIAS:')
@@ -30,13 +30,14 @@ with c6:
       st.write('!!!')
 with c7:
   with st.form('register', border=True):
-    c7_00,c7_01 = st.columns([1,4], border=True)
+    st.markdown('## REGISTER')
+    c7_00,c7_01 = st.columns([1,3], border=True)
     with c7_00:
       st.markdown('ALIAS:')
     with c7_01:
       reg_user = st.text_input(label='ruser', label_visibility='collapsed')
 
-    c7_10,c7_11 = st.columns([1,4], border=True)
+    c7_10,c7_11 = st.columns([1,3], border=True)
     with c7_10:
       st.markdown('PASSWORD:')
     with c7_11:
