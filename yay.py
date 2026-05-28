@@ -13,8 +13,8 @@ with c3:
       st.markdown('ALIAS:')
       st.markdown('PASSWORD:')
     with c32:
-      login_user = st.text_input(label='', label_visibility='collapsed')
-      login_pass = st.text_input(label='', label_visibility='collapsed')
+      login_user = st.text_input(label='luser', label_visibility='collapsed')
+      login_pass = st.text_input(label='lpass', label_visibility='collapsed')
     submit1 = st.form_submit_button('SUBMIT')
     if submit1:
       st.write('!!!')
@@ -25,8 +25,8 @@ with c4:
       st.markdown('### Enter an :gray[ALIAS]')
       st.markdown('### Enter a Password:')
     with c42:
-      reg_user = st.text_input(label='', label_visibility='collapsed')
-      reg_pass = st.text_input(label='', label_visibility='collapsed')
+      reg_user = st.text_input(label='ruser', label_visibility='collapsed')
+      reg_pass = st.text_input(label='rpass', label_visibility='collapsed')
     submit2 = st.form_submit_button('SUBMIT')
     if submit2:
       st.write('!!!!')
