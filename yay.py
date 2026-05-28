@@ -11,8 +11,9 @@ with c5:
 
 c6,c7 = st.columns(2,border=True)
 with c6:
+  st.markdown('## LOGIN')
   with st.form('login',border=True):
-    st.markdown('## LOGIN')
+    
     c6_00,c6_01 = st.columns([1,3], border=True)
     with c6_00:
       st.markdown('ALIAS:')
