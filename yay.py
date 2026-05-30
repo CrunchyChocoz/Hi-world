@@ -1,5 +1,6 @@
 import streamlit as st
 import supabase as sb
+st.write(st.secrets)
 LoginDB = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 st.set_page_config(layout='wide')
 st.write('YAY')
