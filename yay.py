@@ -1,5 +1,6 @@
 import streamlit as st
-LoginDB = st.connection('LoginDB', type='kv')
+import supabase as sb
+LoginDB = sb.create_client('https://tkduwjygrlopoazbdjxt.supabase.co/rest/v1/',)
 st.set_page_config(layout='wide')
 
 c1,c2,c3 = st.columns(3)
