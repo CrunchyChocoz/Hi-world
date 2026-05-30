@@ -1,8 +1,8 @@
 import streamlit as st
 import supabase as sb
-LoginDB = sb.create_client('https://tkduwjygrlopoazbdjxt.supabase.co/rest/v1/',)
+LoginDB = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 st.set_page_config(layout='wide')
-
+st.write('YAY')
 c1,c2,c3 = st.columns(3)
 with c2:
   st.title('TIC TAC TOE')
