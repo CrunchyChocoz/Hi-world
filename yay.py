@@ -1,7 +1,8 @@
 import streamlit as st
 import supabase as sb
 
-LoginDB = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
+SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
+
 st.set_page_config(layout='wide')
 
 c1,c2,c3 = st.columns(3)
@@ -52,7 +53,7 @@ with c7:
     if submit2:
       if not reg_user.strip() or not reg_pass.strip():
         st.stop()
-      for i in LoginDB.keys():
+      for i in [alias for alias in SUPABASE.table('LoginDB').select('alias').execute()]:
         if reg_user.lower().strip() == i.lower().strip():
           st.error('Alias already taken')
           st.stop()
