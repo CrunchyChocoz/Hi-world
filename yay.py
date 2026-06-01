@@ -32,7 +32,17 @@ with c6:
     
     submit1 = st.form_submit_button('SUBMIT')
     if submit1:
-      st.write('!!!')
+      if not login_user or not login_pass :
+        st.stop()
+      elif SUPABASE.table('LoginDB').select('alias').eq('alias',login_user).execute().data :
+        st.error(f'Alias ({login_user}) does NOT exist')
+        st.stop
+      elif SUPABASE.table('LoginDB').select('alias,password').eq('alias',login_user).eq('password',login_pass).execute().data :
+        st.error(f'INCORRECT PASSWORD')
+        st.stop()
+      else:
+        st.write('REDIRECTING')
+      
 with c7:
   st.markdown('## REGISTER')
   
