@@ -41,7 +41,7 @@ with c6:
         st.error(f'INCORRECT PASSWORD')
         st.stop()
       else:
-        st.write('REDIRECTING')
+        st.markdown(':green(SUCCESSFUL)')
       
 with c7:
   st.markdown('## REGISTER')
@@ -72,6 +72,5 @@ with c7:
       else:
         SUPABASE.table('LoginDB').insert({'alias':reg_user, 'normalized_alias':reg_user.lower().strip(), 'password':reg_pass}).execute()
         st.success(f'Alias ({reg_user}) has been registered.')
-        result = SUPABASE.table("LoginDB").select("*").execute()
-        st.write(result.data)
+        
 st.sidebar.title('SidebaR')
