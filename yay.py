@@ -71,7 +71,7 @@ with c7:
         st.error('Password must have MORE than 4 characters')
         st.stop()
       else:
-        SUPABASE.table('LoginDB').insert({'alias':reg_user, 'normalized_alias': (''.join(reg_user.lower().split())), 'password':reg_pass}).execute()
-        st.success(f'Alias ({reg_user}) has been registered.')
+        SUPABASE.table('LoginDB').insert({'alias':reg_user.strip(), 'normalized_alias': (''.join(reg_user.lower().split())), 'password':reg_pass}).execute()
+        st.success(f'Alias ({reg_user.strip()}) has been registered.')
         
 st.sidebar.title('SidebaR')
