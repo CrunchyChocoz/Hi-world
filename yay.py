@@ -2,8 +2,8 @@ import streamlit as st
 import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
-print(SUPABASE.table('LoginDB').select('*').execute())
-print(SUPABASE.table('LoginDB').execute().data)
+st.write(SUPABASE.table('LoginDB').select('*').execute())
+st.write(SUPABASE.table('LoginDB').execute().data)
 st.set_page_config(layout='wide')
 
 c1,c2,c3 = st.columns(3)
