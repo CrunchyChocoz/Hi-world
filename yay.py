@@ -2,9 +2,8 @@ import streamlit as st
 import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
-
 st.set_page_config(layout='wide')
-st.write(st.__version__,'  ',sb.__version__)
+
 c1,c2,c3 = st.columns(3)
 with c2:
   st.title('TIC TAC TOE')
