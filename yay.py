@@ -1,6 +1,6 @@
 import streamlit as st
 import supabase as sb
-
+st.write(st.secrets)
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 st.write(SUPABASE.table('LoginDB').select('*').execute())
 st.write(SUPABASE.table('LoginDB').select('alias').execute().data)
