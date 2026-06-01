@@ -3,7 +3,7 @@ import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 st.write(SUPABASE.table('LoginDB').select('*').execute())
-st.write(SUPABASE.table('LoginDB').select('*').execute().data)
+st.write(SUPABASE.table('LoginDB').select('alias').execute().data)
 st.set_page_config(layout='wide')
 
 c1,c2,c3 = st.columns(3)
@@ -54,7 +54,7 @@ with c7:
     if submit2:
       if not reg_user.strip() or not reg_pass.strip():
         st.stop()
-      for i in [D['alias'] for D in SUPABASE.table('LoginDB').select('alias').execute()]:
+      for i in [D['alias'] for D in SUPABASE.table('LoginDB').select('alias').execute().data]:
         if reg_user.lower().strip() == i.lower().strip():
           st.error('Alias already taken')
           st.stop()
