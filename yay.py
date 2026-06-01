@@ -13,7 +13,7 @@ c4,c5 = st.columns(2, vertical_alignment='top')
 with c5:
   st.markdown('-*by CrunchyChocoz*')
 
-st.write('\n')
+st.write('\n\n\n\n')
 
 c6,c7 = st.columns(2,border=True)
 with c6:
