@@ -1,1 +1,4 @@
-
+SUPABASE = {data:[
+                  {0:{'...': ,'..': }},             ---- row1
+                  S.no. : {'col1':'',...,'col??':''}] ---- row??
+     i.e. data = [rows]
