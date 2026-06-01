@@ -1,9 +1,8 @@
 import streamlit as st
 import supabase as sb
-st.write(st.secrets)
+
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
-st.write(SUPABASE.table('LoginDB').select('*').execute())
-st.write(SUPABASE.table('LoginDB').select('alias').execute().data)
+
 st.set_page_config(layout='wide')
 
 c1,c2,c3 = st.columns(3)
@@ -54,14 +53,14 @@ with c7:
     if submit2:
       if not reg_user.strip() or not reg_pass.strip():
         st.stop()
-      for i in [D['alias'] for D in SUPABASE.table('LoginDB').select('alias').execute().data]:
+      for i in [row['alias'] for row in SUPABASE.table('LoginDB').select('alias').execute().data]:
         if reg_user.lower().strip() == i.lower().strip():
           st.error('Alias already taken')
           st.stop()
       if len(reg_pass) <= 4:
         st.error('Password must have MORE than 4 characters')
         st.stop()
-      LoginDB.set(reg_user,reg_pass)
+      
       st.success('Alias (',reg_user,') has been registered.')
 
 st.sidebar.title('SidebaR')
