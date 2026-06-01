@@ -4,7 +4,7 @@ import supabase as sb
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 
 st.set_page_config(layout='wide')
-
+st.write(st.__version__,'  ',sb.__version__)
 c1,c2,c3 = st.columns(3)
 with c2:
   st.title('TIC TAC TOE')
@@ -53,14 +53,14 @@ with c7:
     if submit2:
       if not reg_user.strip() or not reg_pass.strip():
         st.stop()
-      for i in [row['alias'] for row in SUPABASE.table('LoginDB').select('alias').execute().data]:
-        if reg_user.lower().strip() == i.lower().strip():
-          st.error('Alias already taken')
-          st.stop()
-      if len(reg_pass) <= 4:
+      elif SUPABASE.table('LoginDB').select('normalized_alias').eq('normalized_alias',reg_user.lower().strip()).execute.data:
+        st.error('Alias already taken')
+        st.stop()
+      elif len(reg_pass) <= 4:
         st.error('Password must have MORE than 4 characters')
         st.stop()
-      
-      st.success('Alias (',reg_user,') has been registered.')
+      else:
+        SUPABASE.table('LoginDB').insert({'alias':reg_user, 'normalized_alias':reg_user.lower().strip(), 'password':reg_pass})
+        st.success('Alias (',reg_user,') has been registered.')
 
 st.sidebar.title('SidebaR')
