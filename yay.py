@@ -41,7 +41,7 @@ with c6:
         st.error(f'INCORRECT PASSWORD')
         st.stop()
       else:
-        st.markdown(':green(SUCCESSFUL)')
+        st.markdown(':green[SUCCESSFUL]')
       
 with c7:
   st.markdown('## REGISTER')
