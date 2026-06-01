@@ -37,7 +37,7 @@ with c6:
       elif not SUPABASE.table('LoginDB').select('alias').eq('alias',login_user).execute().data :
         st.error(f'Alias ({login_user}) does NOT exist')
         st.stop()
-      elif SUPABASE.table('LoginDB').select('alias,password').eq('alias',login_user).eq('password',login_pass).execute().data :
+      elif not SUPABASE.table('LoginDB').select('alias,password').eq('alias',login_user).eq('password',login_pass).execute().data :
         st.error(f'INCORRECT PASSWORD')
         st.stop()
       else:
