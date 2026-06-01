@@ -53,7 +53,7 @@ with c7:
     if submit2:
       if not reg_user.strip() or not reg_pass.strip():
         st.stop()
-      elif SUPABASE.table('LoginDB').select('normalized_alias').eq('normalized_alias',reg_user.lower().strip()).execute.data:
+      elif SUPABASE.table('LoginDB').select('normalized_alias').eq('normalized_alias',reg_user.lower().strip()).execute().data:
         st.error('Alias already taken')
         st.stop()
       elif len(reg_pass) <= 4:
