@@ -1,7 +1,7 @@
 import streamlit as st
 import random
 
-st.markdown('<h1 style="text-allign: centre;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
+st.markdown('<h1 style="text-align: centre;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
 st.divider()
 
 table = st.container(border=True)
