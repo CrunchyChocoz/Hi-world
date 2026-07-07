@@ -6,7 +6,8 @@ st.divider()
 
 table = st.container(border=True)
 with table:
-  st.html('''<style> div[data-testid="stVerticalBlockBorderWrapper"]
+  st.html('<div class="classic-board"></div>')
+  st.html('''<style> div[data-testid="stVerticalBlockBorderWrapper"]:has(.classic-board)
               {background-color: #3b3f4b !important;
                border: 20px solid #ffffff !important;
                border-radius: 100px;
