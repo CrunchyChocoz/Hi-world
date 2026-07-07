@@ -8,7 +8,7 @@ table = st.container(border=True)
 with table:
   st.html('''<style> div[data-testid="stVerticalBlockBorderWrapper"]
               {background-color: #3b3f4b !important;
-               border: 2px solid !important;
+               border: 2px solid #ffffff !important;
                border-radius: 100px
                padding: 20px}
              </style>''')
