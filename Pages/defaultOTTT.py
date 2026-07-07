@@ -7,14 +7,12 @@ st.divider()
 
 table = st.container(border=True)
 with table:
-  st.html("""
-  <style>
-  div[data-testid="stLayoutWrapper"]:has(.classic-board) {
-      border: 10px solid red !important;
-      background: blue !important;
-  }
-  </style>
-  """)
+  st.html('''<style> div[data-testid="stVerticalBlockBorderWrapper"]:has(.classic-board)
+              {background-color: #0000ff !important;
+               border: 20px solid #ffffff !important;
+               border-radius: 100px;
+               padding: 20px;}
+             </style>''')
 
   st.html('<div class="classic-board"></div>')
   
