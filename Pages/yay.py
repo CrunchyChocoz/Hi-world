@@ -74,5 +74,6 @@ with c7:
         SUPABASE.table('LoginDB').insert({'alias':reg_user.strip(), 'normalized_alias': (''.join(reg_user.lower().split())), 'password':reg_pass}).execute()
         st.success(f'Alias ({reg_user.strip()}) has been registered.')
         st.session_state.login_attained = True
+        st.rerun()
 
 
