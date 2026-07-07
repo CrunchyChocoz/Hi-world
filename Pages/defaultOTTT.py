@@ -12,6 +12,6 @@ with table:
                border-radius: 100px;
                padding: 20px;}
              </style>''')
-#  c4,c5,c6 = st.columns(3,border=True)
-#  c7,c8,c9 = st.columns(3,border=True)
-#  c10,c11,c12 = st.columns(3,border=True)
+  c4,c5,c6 = st.columns(3,border=True)
+  c7,c8,c9 = st.columns(3,border=True)
+  c10,c11,c12 = st.columns(3,border=True)
