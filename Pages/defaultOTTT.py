@@ -4,7 +4,7 @@ import random
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
 st.divider()
 
-table = st.container()
+table = st.container(border=True)
 with table:
   st.html('''<style> div[data-testid="stVerticalBlockBorderWrapper"]:has(.classic-board)
               {background-color: #0000ff !important;
