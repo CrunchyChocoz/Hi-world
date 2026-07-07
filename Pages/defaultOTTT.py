@@ -2,20 +2,21 @@ import streamlit as st
 import random
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
-st.write(st.__version__)
+
 st.divider()
-
-table = st.container(border=True)
-with table:
-  st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
-              {background-color: #ffffff !important;
-               border: 5px solid #2D2C35 !important;
-               border-radius: 0px;
-               padding: 20px;}
-             </style>''')
-
-  st.html('<div class="classic-board"></div>')
+c1,c2,c3 = st.columns(3)
+with c2:
+  table = st.container(border=True)
+  with table:
+    st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
+                {background-color: #ffffff !important;
+                 border: 5px solid #2D2C35 !important;
+                 border-radius: 0px;
+                 padding: 20px;}
+               </style>''')
   
-  c4,c5,c6 = st.columns(3,border=True)
-  c7,c8,c9 = st.columns(3,border=True)
-  c10,c11,c12 = st.columns(3,border=True)
+    st.html('<div class="classic-board"></div>')
+    
+    c4,c5,c6 = st.columns(3,border=True)
+    c7,c8,c9 = st.columns(3,border=True)
+    c10,c11,c12 = st.columns(3,border=True)
