@@ -9,7 +9,7 @@ table = st.container(border=True)
 with table:
   st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
               {background-color: #ffffff !important;
-               border: 20px solid #aaaaaa !important;
+               border: 20px solid #dddddd !important;
                border-radius: 0px;
                padding: 20px;}
              </style>''')
