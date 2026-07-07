@@ -8,6 +8,5 @@ page_game = st.Page('Pages/defaultTTT.py', title='OTICTACTOE')
 if st.session_state.login_attained == False:
   router_page = st.navigation([page_login])  
 else:
-  st.sidebar(title='NAVIGATION')
-  st.navigation([page_game])
+  router_page = st.navigation([page_game])
 router_page.run()
