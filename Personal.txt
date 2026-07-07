@@ -1,4 +1,6 @@
-SUPABASE = {data:[
-                  {'id': 1,'col1': , ...},             ---- row1
-                  {'id': ,...,'col??':''}] ---- row??
-     i.e. data = [rows]
+  st.html('''<style> div[data-testid="stVerticalBlockBorderWrapper"]:has(.classic-board)
+              {background-color: #0000ff !important;
+               border: 20px solid #ffffff !important;
+               border-radius: 100px;
+               padding: 20px;}
+             </style>''')
