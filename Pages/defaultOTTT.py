@@ -8,7 +8,7 @@ st.divider()
 table = st.container(border=True)
 with table:
   st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
-                border: 5px solid #2D2C35 !important;
+               {border: 5px solid #2D2C35 !important;
                 border-radius: 0px;
                 padding: 20px;}
               </style>''')
@@ -18,3 +18,12 @@ with table:
   c4,c5,c6 = st.columns(3,border=True)
   c7,c8,c9 = st.columns(3,border=True)
   c10,c11,c12 = st.columns(3,border=True)
+
+  st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
+                     div[data-testid="stColumn"] > div
+                     {border-top: 8px #000000;
+                      border-right: 8px #000000;
+                      background-color: #ffffff;
+                      aspect-ratio: 1;}
+             </style>''')
+  
