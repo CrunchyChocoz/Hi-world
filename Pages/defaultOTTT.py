@@ -10,7 +10,7 @@ with table:
               {background-color: #3b3f4b !important;
                border: 2px solid !important;
                border-radius: 100px
-               padding: 20px
+               padding: 20px}
              </style>''')
 #  c4,c5,c6 = st.columns(3,border=True)
 #  c7,c8,c9 = st.columns(3,border=True)
