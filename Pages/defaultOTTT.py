@@ -10,7 +10,7 @@ def id_gen():
   num = random.randint(1000,999999)
   return num
 
-room_id = num
+room_id = id_gen()
 st.query_params['room_id'] = room_id
 SUPABASE.table('ActivePlayersDB').insert({'room-id':room_id, 'Player_1':st.session_state.alias}).execute()
 
