@@ -49,7 +49,7 @@ with c3:
         st.query_params['room_id'] = id
         st.success(f'Room ({SUPABASE.table('ActievPlayersDB').select('Player_1').eq('room-id',id).execute().data}) joined successfully')
       else:
-        st.alert('NO ROOM FOUND')
+        st.error('NO ROOM FOUND')
 
 '''
 def move(id):
