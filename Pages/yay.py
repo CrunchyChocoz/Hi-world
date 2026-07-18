@@ -43,7 +43,7 @@ with c6:
         st.stop()
       else:
         st.markdown(':green[SUCCESSFUL]')
-        st.session_state.user_alias = login_user
+        st.session_state.alias = login_user
         st.session_state.login_attained = True
         st.rerun()
       
