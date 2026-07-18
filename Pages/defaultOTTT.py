@@ -20,7 +20,7 @@ with c2:
                        div[data-testid="stColumn"] > div
                        {
                         background-color: #ffffff;
-                        aspect-ratio: 1 !important;}
+                        }
                </style>''')
 
     st.html('<div class="classic-board"></div>')
