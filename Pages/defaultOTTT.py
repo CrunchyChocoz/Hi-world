@@ -22,8 +22,7 @@ with board:
   st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
                      div[data-testid="stColumn"] > div
                      {height: 100px;
-                      width: 100px;
                       background-color: #ffffff;
-                      aspect-ratio: 1;}
+                      aspect-ratio: 1 !important;}
              </style>''')
   
