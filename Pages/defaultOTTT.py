@@ -4,7 +4,7 @@ import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubKey'])
 room-id = random.randint(1000,999999)
-st.query_params['game-id'] = room-id
+st.query_params['room-id'] = room-id
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
 
@@ -43,7 +43,9 @@ with c1:
 
 with c3:
   st.write('JOIN ROOM')
-  if st.button('ENTER ROOM-ID', on_click=join_room)
+  with st.form(clear_on_submit=True):
+    id = st.text_input('Enter Room Code')
+    st.form_submit_button('SUBMIT', on_click=join_room)
 
 '''
 def move(id):
