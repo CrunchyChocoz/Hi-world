@@ -45,7 +45,7 @@ with c3:
     id = st.text_input('Enter Room Code')
     if st.form_submit_button('SUBMIT'):
       if id == SUPABASE.table('ActivePlayersDB').select('*').eq('room-id',id).execute().data:
-        SUPABASE.table('ActivePlayersDB').update('Player_2':alias).eq('room-id',id).execute()
+        SUPABASE.table('ActivePlayersDB').update('Player_2':st.session_state.alias).eq('room-id',id).execute()
         st.query_params['room_id'] = id
         st.success(f'Room ({SUPABASE.table('ActievPlayersDB').select('Player_1').eq('room-id',id).execute().data}) joined successfully')
       else:
