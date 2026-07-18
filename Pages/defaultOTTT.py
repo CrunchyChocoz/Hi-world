@@ -28,8 +28,16 @@ with board:
              </style>''')
 
   st.html('<div class="classic-board"></div>')
+
+if 
+def pressed(id):
   
-  c4,c5,c6 = st.columns(3)
-  c7,c8,c9 = st.columns(3)
-  c10,c11,c12 = st.columns(3)
+
+for i in range(3):
+  columns = st.columns(3)
+  for j in range(3):
+    n = i*3 + j
+    with columns[j]:
+      if st.button('',key=f'tile{n}',args=(n)):
+        st.
     
