@@ -7,7 +7,7 @@ room_id = random.randint(1000,999999)
 st.query_params['room_id'] = room_id
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
-
+st.write("Secrets keys:", list(st.secrets.keys()))
 st.divider()
 
 board = st.container(border=True)
@@ -32,9 +32,6 @@ with board:
              </style>''')
 
   st.html('<div class="classic-board"></div>')
-
-def join_room(id):
-  st.query_params['room_id'] = id
   
 c1,c2,c3 = st.columns(3)
 with c1:
@@ -45,7 +42,8 @@ with c3:
   st.write('JOIN ROOM')
   with st.form('join_match',clear_on_submit=True):
     id = st.text_input('Enter Room Code')
-    submit = st.form_submit_button('SUBMIT', on_click=join_room, args=(id,))
+    if st.form_submit_button('SUBMIT'):
+      st.query_params['room_id'] = id
 
 '''
 def move(id):
