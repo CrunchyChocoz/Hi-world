@@ -11,13 +11,13 @@ with board:
   st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
   {border: 5px solid #2D2C35 !important;
    border-radius: 0px;
-   height: 1000px;
    padding: 20px;}
              </style>''')
     
   st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
                      div[data-testid="stColumn"] > div
-                     {aspect-ratio: 1 !important;
+                     {height:1 100px !important;
+                      aspect-ratio: 1 !important;
                       background-color: #ffffff;
                       }
              </style>''')
