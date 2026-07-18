@@ -5,7 +5,7 @@ import supabase as sb
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 #if 'room-id' not in st.session_state:
 
-@st.cache_data
+#@st.cache_data
 def id_gen():
   num = random.randint(1000,999999)
   return num
