@@ -2,7 +2,7 @@ import streamlit as st
 import random
 import supabase as sb
 
-SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubKey'])
+SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 room_id = random.randint(1000,999999)
 st.query_params['room_id'] = room_id
 
