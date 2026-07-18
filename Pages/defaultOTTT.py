@@ -16,6 +16,32 @@ SUPABASE.table('ActivePlayersDB').insert({'room-id':room_id, 'Player_1':st.sessi
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
 st.divider()
+  
+c1,c2,c3 = st.columns(3)
+with c1:
+  with st.expander('ROOM-ID'):
+    st.write(room_id)
+  st.divider()
+  
+  st.write('JOIN ROOM')
+  with st.form('join_match',clear_on_submit=True):
+    id_str = st.text_input('Enter Room Code')
+    if st.form_submit_button('SUBMIT'):
+      id = int(id_str) if id_str else 0
+      room = SUPABASE.table('ActivePlayersDB').select('*').eq('room-id',id).execute().data
+      if room:
+        if id == room[0]['room-id']:
+          SUPABASE.table('ActivePlayersDB').update({'Player_2':st.session_state.alias}).eq('room-id',id).execute()
+          st.query_params['room_id'] = id
+          st.success(f"Room ({SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',id).execute().data[0]['Player_1']}) joined successfully")
+      else:
+        st.error('NO ROOM FOUND')
+
+with c2:
+  st.write(f"{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',id).execute().data[0]['Player_1']}'s ROOM")
+  Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',id).execute().data[0]['Player_2']
+  if Player_2 != None and Player_2 != 'NULL':
+    st.write(f'{Player_2} connected')
 
 board = st.container(border=True)
 with board:
@@ -40,26 +66,6 @@ with board:
 
   st.html('<div class="classic-board"></div>')
   
-c1,c2,c3 = st.columns(3)
-with c1:
-  with st.expander('ROOM-ID'):
-    st.write(room_id)
-  st.divider()
-  
-  st.write('JOIN ROOM')
-  with st.form('join_match',clear_on_submit=True):
-    id_str = st.text_input('Enter Room Code')
-    if st.form_submit_button('SUBMIT'):
-      id = int(id_str) if id_str else 0
-      room = SUPABASE.table('ActivePlayersDB').select('*').eq('room-id',id).execute().data
-      if room:
-        if id == room[0]['room-id']:
-          SUPABASE.table('ActivePlayersDB').update({'Player_2':st.session_state.alias}).eq('room-id',id).execute()
-          st.query_params['room_id'] = id
-          st.success(f"Room ({SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',id).execute().data[0]['Player_1']}) joined successfully")
-      else:
-        st.error('NO ROOM FOUND')
-
 '''
 def move(id):
   
