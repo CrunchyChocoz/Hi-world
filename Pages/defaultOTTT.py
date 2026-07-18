@@ -28,23 +28,23 @@ with c1:
     id_str = st.text_input('Enter Room Code')
     if st.form_submit_button('SUBMIT'):
       if id_str == None:
-        id = 0
+        room_code = 0
       else:
-        id = int(id_str)
+        room_code = int(id_str)
       room = SUPABASE.table('ActivePlayersDB').select('*').eq('room-id',id).execute().data
       if room:
-        if id == room[0]['room-id']:
+        if room_code == room[0]['room-id']:
           
-          res = SUPABASE.table('ActivePlayersDB').update({'Player_2':st.session_state.alias}).eq('room-id',id).select().execute()
+          res = SUPABASE.table('ActivePlayersDB').update({'Player_2':st.session_state.alias}).eq('room-id',room_code).select().execute()
           st.write(res.data)
-          st.query_params['room_id'] = id
-          st.success(f"Room ({SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',id).execute().data[0]['Player_1']}) joined successfully")
+          st.query_params['room_id'] = room_code
+          st.success(f"Room ({SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',room_code).execute().data[0]['Player_1']}) joined successfully")
       else:
         st.error('NO ROOM FOUND')
 
 with c2:
-  st.write(f"{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',id).execute().data[0]['Player_1']}'s ROOM")
-  Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',id).execute().data[0]['Player_2']
+  st.write(f"{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',room_code).execute().data[0]['Player_1']}'s ROOM")
+  Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',room_code).execute().data[0]['Player_2']
   if Player_2 != None and Player_2 != 'NULL':
     st.write(f'{Player_2} connected')
 
