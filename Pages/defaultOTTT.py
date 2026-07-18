@@ -49,7 +49,7 @@ with c3:
       if id == room[0]['room-id'] and room:
         SUPABASE.table('ActivePlayersDB').update({'Player_2':st.session_state.alias}).eq('room-id',id).execute()
         st.query_params['room_id'] = id
-        st.success(f"Room ({SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',id).execute().data}) joined successfully")
+        st.success(f"Room ({SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',id).execute().data[0]['Player_1']}) joined successfully")
       else:
         st.error('NO ROOM FOUND')
         st.write(room)
