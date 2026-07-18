@@ -17,9 +17,9 @@ with c2:
     
     st.html('<div class="classic-board"></div>')
       
-    c4,c5,c6 = st.columns(3,border=True)
-    c7,c8,c9 = st.columns(3,border=True)
-    c10,c11,c12 = st.columns(3,border=True)
+    c4,c5,c6 = st.columns(3)
+    c7,c8,c9 = st.columns(3)
+    c10,c11,c12 = st.columns(3)
   
     st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
                        div[data-testid="stColumn"] > div
