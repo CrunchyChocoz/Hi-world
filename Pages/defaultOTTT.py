@@ -27,7 +27,7 @@ with c1:
   with st.form('join_match',clear_on_submit=True):
     id_str = st.text_input('Enter Room Code')
     if st.form_submit_button('SUBMIT'):
-      if id_str = None:
+      if id_str == None:
         id = 0
       else:
         id = int(id_str)
