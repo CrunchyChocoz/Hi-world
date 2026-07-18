@@ -40,8 +40,8 @@ with c1:
         st.error('NO ROOM FOUND')
 
 with c2:
-  st.write(f"{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',room_code).execute().data[0]['Player_1']}'s ROOM")
-  Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',room_code).execute().data[0]['Player_2']
+  st.write(f"{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',room_id).execute().data[0]['Player_1']}'s ROOM")
+  Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',room_id).execute().data[0]['Player_2']
   if Player_2 != None and Player_2 != 'NULL':
     st.write(f'{Player_2} connected')
 
