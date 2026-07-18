@@ -34,7 +34,7 @@ with board:
   st.html('<div class="classic-board"></div>')
 
 def join_room(id):
-  st.query_params('room_id') = id
+  st.query_params['room_id'] = id
   
 c1,c2,c3 = st.columns(3)
 with c1:
