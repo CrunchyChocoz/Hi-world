@@ -31,7 +31,7 @@ with c1:
         room_code = 0
       else:
         room_code = int(id_str)
-      room = SUPABASE.table('ActivePlayersDB').select('*').eq('room-id',id).execute().data
+      room = SUPABASE.table('ActivePlayersDB').select('*').eq('room-id',room_code).execute().data
       if room:
         if room_code == room[0]['room-id']:
           st.query_params['room_id'] = room_code
