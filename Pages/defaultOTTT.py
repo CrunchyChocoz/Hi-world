@@ -5,7 +5,7 @@ import supabase as sb
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 room_id = random.randint(1000,999999)
 st.query_params['room_id'] = room_id
-SUPABASE.table('ActivePlayersDB').insert({'room-id':room-id, 'Player_1':st.session_state.alias)
+SUPABASE.table('ActivePlayersDB').insert({'room-id':room-id, 'Player_1':st.session_state.alias}).execute()
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
 st.write("Secrets keys:", list(st.secrets.keys()))
