@@ -42,8 +42,9 @@ with c1:
 with c3:
   st.write('JOIN ROOM')
   with st.form('join_match',clear_on_submit=True):
-    id = int(st.text_input('Enter Room Code'))
+    id_str = st.text_input('Enter Room Code')
     if st.form_submit_button('SUBMIT'):
+      id = int(id_str)
       room = SUPABASE.table('ActivePlayersDB').select('*').eq('room-id',id).execute().data
       if id == room[0]['room-id'] and room:
         SUPABASE.table('ActivePlayersDB').update({'Player_2':st.session_state.alias}).eq('room-id',id).execute()
