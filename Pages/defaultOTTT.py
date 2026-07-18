@@ -45,7 +45,7 @@ with c3:
   st.write('JOIN ROOM')
   with st.form('join_match',clear_on_submit=True):
     id = st.text_input('Enter Room Code')
-    submit = st.form_submit_button('SUBMIT', on_click=join_room, args=(id))
+    submit = st.form_submit_button('SUBMIT', on_click=join_room, args=(id,))
 
 '''
 def move(id):
