@@ -18,6 +18,7 @@ with board:
                      div[data-testid="stColumn"] > div
                      {max-width: 100px !important;
                       aspect-ratio: 1 !important;
+                      justify-content: center;
                       border: 0px !important;
                       background-color: #ffffff;
                       }
