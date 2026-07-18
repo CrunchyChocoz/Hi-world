@@ -44,7 +44,12 @@ with c3:
   with st.form('join_match',clear_on_submit=True):
     id = st.text_input('Enter Room Code')
     if st.form_submit_button('SUBMIT'):
-      st.query_params['room_id'] = id
+      if id == SUPABASE.table('ActivePlayersDB').select('*').eq('room-id',id).execute().data:
+        SUPABASE.table('ActivePlayersDB').update('Player_2':alias).eq('room-id',id).execute()
+        st.query_params['room_id'] = id
+        st.success(f'Room ({SUPABASE.table('ActievPlayersDB').select('Player_1').eq('room-id',id).execute().data}) joined successfully')
+      else:
+        st.alert('NO ROOM FOUND')
 
 '''
 def move(id):
