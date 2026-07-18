@@ -1,10 +1,12 @@
 import streamlit as st
 import random
+import supabase as sb
+
+SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubKey'])
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
 
 st.divider()
-
 
 board = st.container(border=True)
 with board:
