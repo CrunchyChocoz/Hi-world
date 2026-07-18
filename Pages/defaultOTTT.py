@@ -5,8 +5,8 @@ st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_all
 
 st.divider()
 
-table = st.container(border=True)
-with table:
+board = st.container(border=True)
+with board:
   st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
                {border: 5px solid #2D2C35 !important;
                 border-radius: 0px;
@@ -21,8 +21,7 @@ with table:
 
   st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
                      div[data-testid="stColumn"] > div
-                     {border-top: 8px #000000;
-                      border-right: 8px #000000;
+                     {
                       background-color: #ffffff;
                       aspect-ratio: 1;}
              </style>''')
