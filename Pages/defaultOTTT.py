@@ -10,6 +10,7 @@ board = st.container(border=True)
 with board:
   st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
   {border: 5px solid #2D2C35 !important;
+   justify-content: center !important;
    border-radius: 0px;
    padding: 20px;}
              </style>''')
