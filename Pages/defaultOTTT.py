@@ -3,8 +3,8 @@ import random
 import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubKey'])
-room-id = random.randint(1000,999999)
-st.query_params['room-id'] = room-id
+room_id = random.randint(1000,999999)
+st.query_params['room_id'] = room_id
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
 
@@ -34,12 +34,12 @@ with board:
   st.html('<div class="classic-board"></div>')
 
 def join_room(id):
-  st.query_params('room-id') = id
+  st.query_params('room_id') = id
   
 c1,c2,c3 = st.columns(3)
 with c1:
   with st.expander('ROOM-ID'):
-    st.write(room-id)
+    st.write(room_id)
 
 with c3:
   st.write('JOIN ROOM')
