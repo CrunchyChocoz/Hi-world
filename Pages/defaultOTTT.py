@@ -17,7 +17,7 @@ with board:
     
   st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
                      div[data-testid="stColumn"] > div
-                     {
+                     {aspect-ratio: 1 !important;
                       background-color: #ffffff;
                       }
              </style>''')
