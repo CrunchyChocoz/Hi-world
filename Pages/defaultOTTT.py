@@ -43,7 +43,7 @@ with c1:
 
 with c3:
   st.write('JOIN ROOM')
-  with st.form(clear_on_submit=True):
+  with st.form('',clear_on_submit=True):
     id = st.text_input('Enter Room Code')
     st.form_submit_button('SUBMIT', on_click=join_room)
 
