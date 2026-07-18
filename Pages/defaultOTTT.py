@@ -15,7 +15,6 @@ st.query_params['room_id'] = room_id
 SUPABASE.table('ActivePlayersDB').insert({'room-id':room_id, 'Player_1':st.session_state.alias}).execute()
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
-st.write("Secrets keys:", list(st.secrets.keys()))
 st.divider()
 
 board = st.container(border=True)
