@@ -27,7 +27,10 @@ with c1:
   with st.form('join_match',clear_on_submit=True):
     id_str = st.text_input('Enter Room Code')
     if st.form_submit_button('SUBMIT'):
-      id = int(id_str) if id_str else 0
+      if id_str = None:
+        id = 0
+      else:
+        id = int(id_str)
       room = SUPABASE.table('ActivePlayersDB').select('*').eq('room-id',id).execute().data
       if room:
         if id == room[0]['room-id']:
