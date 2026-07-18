@@ -10,6 +10,7 @@ board = st.container(border=True)
 with board:
   st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
   {border: 5px solid #2D2C35 !important;
+   display: flex !important;
    justify-content: center !important;
    border-radius: 0px;
    padding: 20px;}
@@ -19,6 +20,7 @@ with board:
                      div[data-testid="stColumn"] > div
                      {max-width: 100px !important;
                       aspect-ratio: 1 !important;
+                      display: flex !important;
                       justify-content: center !important;
                       border: 0px !important;
                       background-color: #ffffff;
