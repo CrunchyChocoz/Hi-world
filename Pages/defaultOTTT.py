@@ -12,7 +12,7 @@ with c2:
     st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
                  {border: 5px solid #2D2C35 !important;
                   border-radius: 0px;
-                  height: 200px;
+                  height: 1000px;
                   padding: 20px;}
                 </style>''')
     
