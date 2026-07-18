@@ -23,7 +23,7 @@ with c2:
   
     st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
                        div[data-testid="stColumn"] > div
-                       {height: 100px !important;
+                       {
                         background-color: #ffffff;
                         aspect-ratio: 1 !important;}
                </style>''')
