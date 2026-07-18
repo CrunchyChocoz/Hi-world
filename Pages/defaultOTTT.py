@@ -44,7 +44,8 @@ c1,c2,c3 = st.columns(3)
 with c1:
   with st.expander('ROOM-ID'):
     st.write(room_id)
-    
+  st.divider()
+  
   st.write('JOIN ROOM')
   with st.form('join_match',clear_on_submit=True):
     id_str = st.text_input('Enter Room Code')
