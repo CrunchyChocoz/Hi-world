@@ -18,6 +18,7 @@ with board:
                      div[data-testid="stColumn"] > div
                      {height:1 100px !important;
                       aspect-ratio: 1 !important;
+                      border: 0px !important;
                       background-color: #ffffff;
                       }
              </style>''')
