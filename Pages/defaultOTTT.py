@@ -51,6 +51,9 @@ with c3:
         st.success(f"Room ({SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',id).execute().data}) joined successfully")
       else:
         st.error('NO ROOM FOUND')
+        st.write(room)
+        st.write(id)
+        st.write(room[0]['room-id'])
 
 '''
 def move(id):
