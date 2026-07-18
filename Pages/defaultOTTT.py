@@ -3,6 +3,8 @@ import random
 import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubKey'])
+room-id = random.randint(1000,999999)
+st.query_params['game-id'] = room-id
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
 
@@ -31,8 +33,20 @@ with board:
 
   st.html('<div class="classic-board"></div>')
 
-if 
-def pressed(id):
+def join_room(id):
+  st.query_params('room-id') = id
+  
+c1,c2,c3 = st.columns(3)
+with c1:
+  with st.expander('ROOM-ID'):
+    st.write(room-id)
+
+with c3:
+  st.write('JOIN ROOM')
+  if st.button('ENTER ROOM-ID', on_click=join_room)
+
+'''
+def move(id):
   
 
 for i in range(3):
@@ -40,6 +54,6 @@ for i in range(3):
   for j in range(3):
     n = i*3 + j
     with columns[j]:
-      if st.button('',key=f'tile{n}',args=(n)):
-        st.
+      st.button('',key=f'tile{n}',on_click=move(), args=(n)):
+'''      
     
