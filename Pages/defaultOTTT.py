@@ -3,7 +3,7 @@ import random
 import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
-if 'room-id' not in st.session_state:
+if 'room_id' not in st.session_state:
   st.session_state.room_id = None
 
 def id_gen():
