@@ -49,7 +49,7 @@ with c3:
   Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',st.session_state.room_id).execute().data[0]['Player_2']
   if Player_2 != None and Player_2 != 'NULL':
     st.markdown(f"<h5 style='text-align: center;'>{Player_2} connected</h5>", unsafe_allow_html=True)
-    st.session_state.status = connected
+    st.session_state.status = 'connected'
 
 board = st.container(border=True)
 with board:
