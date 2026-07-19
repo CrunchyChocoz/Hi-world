@@ -42,6 +42,7 @@ with c1:
 with c2:
   st.markdown('''<div style="
                              display: flex;
+                             height: 200px;
                              justify-content: center;>
                   </div>''', unsafe_allow_html=True)
   
