@@ -33,8 +33,11 @@ with c1:
           st.session_state.room_id = room_code
           st.query_params['room_id'] = room_code
           st.success(f"Room ({SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',room_code).execute().data[0]['Player_1']}) joined successfully")
+          SUPABASE.table('ActivePlayersDB').update({'Player_2':st.session_state.alias}).eq('room-id',room_code).execute()
+        else:
+          st.error('NO ROOM FOUND')
       else:
-        st.error('NO ROOM FOUND')
+        st.error('???')
 
 with c2:
   st.write(f"{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']}'s ROOM")
