@@ -4,11 +4,11 @@ import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 if 'room_id' not in st.session_state:
-  num = random.randint(1000,999999)
-  st.query_params['room_id'] = num
-  st.session_state.room_id = num
+  room_id = random.randint(1000,999999)
+  st.query_params['room_id'] = room_id
+  st.session_state.room_id = room_id
 
-SUPABASE.table('ActivePlayersDB').insert({'room-id':room_id, 'Player_1':st.session_state.alias}).execute()
+SUPABASE.table('ActivePlayersDB').insert({'room-id':st.session_state.room_id, 'Player_1':st.session_state.alias}).execute()
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
 st.divider()
@@ -16,7 +16,7 @@ st.divider()
 c1,c2,c3 = st.columns(3)
 with c1:
   with st.expander('ROOM-ID'):
-    st.write(room_id)
+    st.write(st.session_state.room_id)
   st.divider()
   
   st.write('JOIN ROOM')
@@ -37,8 +37,8 @@ with c1:
         st.error('NO ROOM FOUND')
 
 with c2:
-  st.write(f"{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',room_id).execute().data[0]['Player_1']}'s ROOM")
-  Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',room_id).execute().data[0]['Player_2']
+  st.write(f"{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']}'s ROOM")
+  Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',st.session_state.room_id).execute().data[0]['Player_2']
   if Player_2 != None and Player_2 != 'NULL':
     st.write(f'{Player_2} connected')
 
