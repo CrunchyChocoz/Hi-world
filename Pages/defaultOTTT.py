@@ -74,7 +74,6 @@ with board:
 
   st.html('<div class="classic-board"></div>')
 
-@st.cache_data
 if 'turn' not in st.session_state:
   if random.randint(0,1) == 0:
     st.session_state.turn = 'Player_1'
