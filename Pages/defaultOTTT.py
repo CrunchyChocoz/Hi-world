@@ -40,14 +40,7 @@ with c1:
         st.error('???')
 
 with c2:
-  st.markdown('''<div style="
-                             display: flex !important;
-                             height: 700px !important;
-                             justify-content: center;
-                             alignment: center;>
-                  </div>''', unsafe_allow_html=True)
-  
-  st.write(f"{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']}'s ROOM")
+  st.markdown(f"<h5 style text-align: center;>{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']}'s ROOM</h5>", unsafe_allow_html=True)
 
 
 with c3:
