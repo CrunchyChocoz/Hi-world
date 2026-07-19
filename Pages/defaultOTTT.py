@@ -20,7 +20,6 @@ with c1:
     st.write(st.session_state.room_id)
   st.divider()
 
-  @st.fragment
   st.write('JOIN ROOM')
   with st.form('join_match',clear_on_submit=True):
     id_str = st.text_input('Enter Room Code')
@@ -85,21 +84,28 @@ if 'turn' not in st.session_state:
 def move(index):
   if 'counter' not in st.session_state:
     st.session_state.counter = 1
-    SUPABASE.table('defaultOTTTDB').insert({f'Tile{index}':'X'}).execute()
     query = SUPABASE.table('defaultOTTTDB').insert({f'Tile{index}':'X'})
-   # response = query
+    response = query.execute()
+    st.session_state.game_id = response.data[0]['id']
   else:
     st.session_state.counter += 1
 
   if st.session_state.counter % 2 == 1:
-    SUPABASE.
+    SUPABASE.table('defaultOTTTDB').update({f'Tile{index}':'X'}).eq('id',st.session_state.game_id).execute()
+  else:
+    SUPABASE.table('defaultOTTTDB').update({f'Tile{index}':'O'}).eq('id',st.session_state.game_id).execute()
 
 def create_board():
+  board_data = SUPABASE.table('defaultOTTTDB').select('*').eq('id':game_id).execute().data
   for i in range(1,4):
     columns = st.columns(3)
     for j in range(1,4):
       index = int(f'{i}{j}')
       with columns[j]:
-        st.button('',key=f'tile{index}',on_click=move(), args=(index)):
+        state = bool(board_data[0][f'Tile{index}'])
+        if state:
+          st.write(board_data[0][f'Tile{index}')
+        else:
+          st.button('',key=f'tile{index}' ,on_click=move(), args=(index)):
         
     
