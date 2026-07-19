@@ -3,6 +3,7 @@ import random
 import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
+  
 if 'room_id' not in st.session_state:
   room_id = random.randint(1000,999999)
   st.query_params['room_id'] = room_id
@@ -18,7 +19,8 @@ with c1:
   with st.expander('ROOM-ID'):
     st.write(st.session_state.room_id)
   st.divider()
-  
+
+  @st.fragment
   st.write('JOIN ROOM')
   with st.form('join_match',clear_on_submit=True):
     id_str = st.text_input('Enter Room Code')
@@ -34,6 +36,8 @@ with c1:
           st.query_params['room_id'] = room_code
           st.success(f"Room ({SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',room_code).execute().data[0]['Player_1']}) joined successfully")
           SUPABASE.table('ActivePlayersDB').update({'Player_2':st.session_state.alias}).eq('room-id',room_code).execute()
+          st.session_state.'Player_1' = SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']
+          st.session_state.'Player_2' = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',st.session_state.room_id).execute().data[0]['Player_2']
         else:
           st.error('NO ROOM FOUND')
       else:
@@ -42,11 +46,11 @@ with c1:
 with c2:
   st.markdown(f"<h5 style='text-align: center;'>{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']}'s ROOM</h5>", unsafe_allow_html=True)
 
-
 with c3:
   Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',st.session_state.room_id).execute().data[0]['Player_2']
   if Player_2 != None and Player_2 != 'NULL':
-    st.markdown(f"<h5 style='text-align: center;'>{Player_2} connected</h5>", unsafe_allow_html=True)  
+    st.markdown(f"<h5 style='text-align: center;'>{Player_2} connected</h5>", unsafe_allow_html=True)
+    st.session_state.status = connected
 
 board = st.container(border=True)
 with board:
@@ -70,16 +74,32 @@ with board:
              </style>''')
 
   st.html('<div class="classic-board"></div>')
-  
-'''
-def move(id):
-  
 
-for i in range(3):
-  columns = st.columns(3)
-  for j in range(3):
-    n = i*3 + j
-    with columns[j]:
-      st.button('',key=f'tile{n}',on_click=move(), args=(n)):
-'''      
+@st.cache_data
+if 'turn' not in st.session_state:
+  if random.randint(0,1) == 0:
+    st.session_state.turn = 'Player_1'
+  else:
+    st.session_state.turn = 'Player_2'
+
+def move(index):
+  if 'counter' not in st.session_state:
+    st.session_state.counter = 1
+    SUPABASE.table('defaultOTTTDB').insert({f'Tile{index}':'X'}).execute()
+    query = SUPABASE.table('defaultOTTTDB').insert({f'Tile{index}':'X'})
+   # response = query
+  else:
+    st.session_state.counter += 1
+
+  if st.session_state.counter % 2 == 1:
+    SUPABASE.
+
+def create_board():
+  for i in range(1,4):
+    columns = st.columns(3)
+    for j in range(1,4):
+      index = int(f'{i}{j}')
+      with columns[j]:
+        st.button('',key=f'tile{index}',on_click=move(), args=(index)):
+        
     
