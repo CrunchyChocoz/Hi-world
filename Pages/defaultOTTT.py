@@ -105,6 +105,6 @@ def create_board():
         if state:
           st.write(board_data[0][f'Tile{index}'])
         else:
-          st.button('',key=f'tile{index}' ,on_click=move(), args=(index)):
+          st.button('',key=f'tile{index}' ,on_click=move(), args=(index))
         
     
