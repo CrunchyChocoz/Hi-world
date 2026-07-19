@@ -34,6 +34,7 @@ with c1:
       room = SUPABASE.table('ActivePlayersDB').select('*').eq('room-id',room_code).execute().data
       if room:
         if room_code == room[0]['room-id']:
+          st.session_state.room_id = room_code
           st.query_params['room_id'] = room_code
           st.success(f"Room ({SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',room_code).execute().data[0]['Player_1']}) joined successfully")
       else:
