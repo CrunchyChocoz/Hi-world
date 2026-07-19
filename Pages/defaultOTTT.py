@@ -93,6 +93,7 @@ def move(index):
     SUPABASE.table('defaultOTTTDB').update({f'Tile{index}':'X'}).eq('id',st.session_state.game_id).execute()
   else:
     SUPABASE.table('defaultOTTTDB').update({f'Tile{index}':'O'}).eq('id',st.session_state.game_id).execute()
+    st.rerun()
 
 def create_board():
   board_data = SUPABASE.table('defaultOTTTDB').select('*').eq('id',game_id).execute().data
@@ -107,4 +108,4 @@ def create_board():
         else:
           st.button('',key=f'tile{index}' ,on_click=move(), args=(index))
         
-    
+create_board()
