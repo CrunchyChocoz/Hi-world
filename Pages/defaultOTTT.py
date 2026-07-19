@@ -43,7 +43,8 @@ with c2:
   st.markdown('''<div style="
                              display: flex !important;
                              height: 700px !important;
-                             justify-content: center;>
+                             justify-content: center;
+                             alignment: center;>
                   </div>''', unsafe_allow_html=True)
   
   st.write(f"{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']}'s ROOM")
