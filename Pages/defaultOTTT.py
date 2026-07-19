@@ -104,7 +104,7 @@ def create_board():
       with columns[j]:
         state = bool(board_data[0][f'Tile{index}'])
         if state:
-          st.write(board_data[0][f'Tile{index}')
+          st.write(board_data[0][f'Tile{index}'])
         else:
           st.button('',key=f'tile{index}' ,on_click=move(), args=(index)):
         
