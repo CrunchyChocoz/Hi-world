@@ -40,13 +40,13 @@ with c1:
         st.error('???')
 
 with c2:
-  st.markdown(f"<h5 style text-align: center;>{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']}'s ROOM</h5>", unsafe_allow_html=True)
+  st.markdown(f"<h5 style='text-align: center;'>{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']}'s ROOM</h5>", unsafe_allow_html=True)
 
 
 with c3:
   Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',st.session_state.room_id).execute().data[0]['Player_2']
   if Player_2 != None and Player_2 != 'NULL':
-    st.write(f'{Player_2} connected')  
+    st.markdown(f'<h5 style='text-align: center;'>{Player_2} connected</h5>')  
 
 board = st.container(border=True)
 with board:
