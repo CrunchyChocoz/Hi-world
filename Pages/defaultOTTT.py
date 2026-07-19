@@ -95,7 +95,7 @@ def move(index):
     SUPABASE.table('defaultOTTTDB').update({f'Tile{index}':'O'}).eq('id',st.session_state.game_id).execute()
 
 def create_board():
-  board_data = SUPABASE.table('defaultOTTTDB').select('*').eq('id':game_id).execute().data
+  board_data = SUPABASE.table('defaultOTTTDB').select('*').eq('id',game_id).execute().data
   for i in range(1,4):
     columns = st.columns(3)
     for j in range(1,4):
