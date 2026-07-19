@@ -4,14 +4,10 @@ import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 if 'room_id' not in st.session_state:
-  st.session_state.room_id = None
-
-def id_gen():
   num = random.randint(1000,999999)
-  return num
+  st.query_params['room_id'] = num
+  st.session_state.room_id = num
 
-room_id = id_gen()
-st.query_params['room_id'] = room_id
 SUPABASE.table('ActivePlayersDB').insert({'room-id':room_id, 'Player_1':st.session_state.alias}).execute()
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
