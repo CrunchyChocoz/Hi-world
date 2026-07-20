@@ -37,6 +37,8 @@ with c1:
           SUPABASE.table('ActivePlayersDB').update({'Player_2':st.session_state.alias}).eq('room-id',room_code).execute()
           st.session_state.Player_1 = SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']
           st.session_state.Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',st.session_state.room_id).execute().data[0]['Player_2']
+          st.session_state.readyP1 = False
+          st.session_state.readyP2 = False
         else:
           st.error('NO ROOM FOUND')
       else:
@@ -44,12 +46,25 @@ with c1:
 
 with c2:
   st.markdown(f"<h5 style='text-align: center;'>{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']}'s ROOM</h5>", unsafe_allow_html=True)
-
+  with st.form('P1',):
+    st.write('READY?')
+    if st.form_submit_button('ready?'):
+      if st.session_state.alias == st.session_state.Player_1:
+        st.session_state.readyP1 = True
+        st.success('READY!')
+      
 with c3:
   Player_2 = SUPABASE.table('ActivePlayersDB').select('Player_2').eq('room-id',st.session_state.room_id).execute().data[0]['Player_2']
   if Player_2 != None and Player_2 != 'NULL':
     st.markdown(f"<h5 style='text-align: center;'>{Player_2} connected</h5>", unsafe_allow_html=True)
     st.session_state.status = 'connected'
+  with st.form('P2'):
+    st.write('READY?')
+    if st.form_submit_button('ready?'):
+      if st.session_state.alias == st.session_state.Player_2:
+        st.session_state.readyP2 = True
+        st.success('READY!')
+  
 
 if 'turn' not in st.session_state:
   if random.randint(0,1) == 0:
@@ -106,5 +121,6 @@ def create_board():
             st.write(board_data[0][f'Tile{index}'])
           else:
             st.button('',key=f'tile{index}' ,on_click=move(), args=(index))
-        
-create_board()
+
+if st.session_state.readyP1 and st.session_state.readyP2:
+  create_board()
