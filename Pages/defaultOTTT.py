@@ -51,29 +51,6 @@ with c3:
     st.markdown(f"<h5 style='text-align: center;'>{Player_2} connected</h5>", unsafe_allow_html=True)
     st.session_state.status = 'connected'
 
-board = st.container(border=True)
-with board:
-  st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
-  {border: 5px solid #2D2C35 !important;
-   display: flex !important;
-   justify-content: center !important;
-   border-radius: 0px;
-   padding: 20px;}
-             </style>''')
-    
-  st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
-                     div[data-testid="stColumn"] > div
-                     {max-width: 100px !important;
-                      aspect-ratio: 1 !important;
-                      display: flex !important;
-                      justify-content: center !important;
-                      border: 0px !important;
-                      background-color: #ffffff;
-                      }
-             </style>''')
-
-  st.html('<div class="classic-board"></div>')
-
 if 'turn' not in st.session_state:
   if random.randint(0,1) == 0:
     st.session_state.turn = 'Player_1'
@@ -97,6 +74,28 @@ def move(index):
 
 def create_board():
   board_data = SUPABASE.table('defaultOTTTDB').select('*').eq('id',game_id).execute().data
+  board = st.container(border=True)
+with board:
+  st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
+  {border: 5px solid #2D2C35 !important;
+   display: flex !important;
+   justify-content: center !important;
+   border-radius: 0px;
+   padding: 20px;}
+             </style>''')
+    
+  st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
+                     div[data-testid="stColumn"] > div
+                     {max-width: 100px !important;
+                      aspect-ratio: 1 !important;
+                      display: flex !important;
+                      justify-content: center !important;
+                      border: 0px !important;
+                      background-color: #ffffff;
+                      }
+             </style>''')
+
+  st.html('<div class="classic-board"></div>')
   for i in range(1,4):
     columns = st.columns(3)
     for j in range(1,4):
