@@ -8,7 +8,10 @@ if 'room_id' not in st.session_state:
   room_id = random.randint(1000,999999)
   st.query_params['room_id'] = room_id
   st.session_state.room_id = room_id
-
+  
+if 'status' not in st.session_state:
+  st.session_state.status = 'waiting'
+  
 SUPABASE.table('ActivePlayersDB').insert({'room-id':st.session_state.room_id, 'Player_1':st.session_state.alias}).execute()
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
@@ -122,5 +125,6 @@ def create_board():
           else:
             st.button('',key=f'tile{index}' ,on_click=move(), args=(index))
 
-if st.session_state.readyP1 and st.session_state.readyP2:
-  create_board()
+if st.session_state.status == 'connected':
+  if st.session_state.readyP1 and st.session_state.readyP2:
+    create_board()
