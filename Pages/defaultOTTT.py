@@ -49,6 +49,7 @@ with c1:
 
 with c2:
   st.markdown(f"<h5 style='text-align: center;'>{SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',st.session_state.room_id).execute().data[0]['Player_1']}'s ROOM</h5>", unsafe_allow_html=True)
+  st.divider()
   with st.form('P1',):
     st.write('READY?')
     if st.form_submit_button('ready?'):
@@ -61,12 +62,13 @@ with c3:
   if Player_2 != None and Player_2 != 'NULL':
     st.markdown(f"<h5 style='text-align: center;'>{Player_2} connected</h5>", unsafe_allow_html=True)
     st.session_state.status = 'connected'
-  with st.form('P2'):
-    st.write('READY?')
-    if st.form_submit_button('ready?'):
-      if st.session_state.alias == st.session_state.Player_2:
-        st.session_state.readyP2 = True
-        st.success('READY!')
+    st.divider
+    with st.form('P2'):
+      st.write('READY?')
+      if st.form_submit_button('ready?'):
+        if st.session_state.alias == st.session_state.Player_2:
+          st.session_state.readyP2 = True
+          st.success('READY!')
   
 
 if 'turn' not in st.session_state:
