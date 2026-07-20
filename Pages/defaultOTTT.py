@@ -43,6 +43,8 @@ with c1:
           st.session_state.readyP1 = False
           st.session_state.readyP2 = False
           st.session_state.status = 'connected'
+          st.rerun()
+
         else:
           st.error('NO ROOM FOUND')
       else:
