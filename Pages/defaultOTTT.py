@@ -85,9 +85,7 @@ if 'turn' not in st.session_state:
 def move(index):
   if 'counter' not in st.session_state:
     st.session_state.counter = 1
-    query = SUPABASE.table('defaultOTTTDB').insert({f'Tile{index}':'X'})
-    response = query.execute()
-    st.session_state.game_id = response.data[0]['id']
+    SUPABASE.table('defaultOTTTDB').insert({f'Tile{index}':'X'}).execute()
   else:
     st.session_state.counter += 1
 
@@ -132,6 +130,15 @@ def create_board():
           else:
             st.button('',key=f'tile{index}' ,on_click=move(), args=(index))
 
+def get_game_id():
+    query = SUPABASE.table('defaultOTTTDB').insert({})
+    response = query.execute()
+    st.session_state.game_id = response.data[0]['id']
+
 if st.session_state.status == 'connected':
   if st.session_state.readyP1 and st.session_state.readyP2:
+    if 'game_id' not in st.session_state:
+      get_game_id()
+      
+    st.divider()
     create_board()
