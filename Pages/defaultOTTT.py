@@ -1,8 +1,20 @@
 import streamlit as st
 import random
+import time
 import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
+
+if 'refresh' not in st.session_state:
+  st.session_state.refresh = False
+  st.session_state.refresh_counter = 0
+  
+@st.fragment(run_every=2)
+def refresh(count):
+  if st.session_state.refresh and st.session_state.refresh_counter >= count:
+    while st.session_state.refresh:
+      st.session_state.refresh_counter +=1
+      st.rerun()
   
 if 'room_id' not in st.session_state:
   room_id = random.randint(1000,999999)
@@ -11,7 +23,7 @@ if 'room_id' not in st.session_state:
   
 if 'status' not in st.session_state:
   st.session_state.status = 'waiting'
-  
+
 SUPABASE.table('ActivePlayersDB').insert({'room-id':st.session_state.room_id, 'Player_1':st.session_state.alias}).execute()
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
@@ -43,6 +55,8 @@ with c1:
           st.session_state.readyP1 = False
           st.session_state.readyP2 = False
           st.session_state.status = 'connected'
+          st.session_state.refresh = True
+          refresh(30)
           st.rerun()
 
         else:
@@ -74,6 +88,7 @@ with c3:
         if st.session_state.alias == st.session_state.Player_2:
           st.session_state.readyP2 = True
           st.success('READY!')
+          
   
 
 if 'turn' not in st.session_state:
