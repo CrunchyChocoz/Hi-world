@@ -130,9 +130,9 @@ def create_board():
                </style>''')
   
     st.html('<div class="classic-board"></div>')
-    for i in range(1,4):
+    for i in range(0,3):
       columns = st.columns(3)
-      for j in range(1,4):
+      for j in range(0,3):
         index = int(f'{i}{j}')
         with columns[j]:
           state = bool(board_data[0][f'Tile{index}'])
