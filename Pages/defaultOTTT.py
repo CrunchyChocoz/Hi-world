@@ -147,7 +147,7 @@ def get_game_id():
     st.session_state.game_id = response.data[0]['id']
 
 if st.session_state.status == 'connected':
-  if st.session_state.readyP1 and st.session_state.readyP2:
+  if st.session_state.game_start:
     if 'game_id' not in st.session_state:
       get_game_id()
       
