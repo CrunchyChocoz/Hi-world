@@ -18,6 +18,7 @@ if 'room_id' not in st.session_state:
 
 if 'table_initiated' not in st.session_state:
   st.session_state.table_initiated = True
+  st.session_state.Player_1 = st.session_state.alias
   SUPABASE.table('ActivePlayersDB').insert({'room-id':st.session_state.room_id, 'Player_1':st.session_state.alias}).execute()
 
 st.markdown('<h1 style="text-align: center;">CLASSIC TICTACTOE</h1>', unsafe_allow_html=True)
