@@ -6,7 +6,7 @@ import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 
-st_autorefresh(interval=2000)
+st_autorefresh(interval=10000)
 
 if 'refresh' not in st.session_state:
   st.session_state.refresh = False
