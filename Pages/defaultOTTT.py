@@ -107,7 +107,7 @@ def move(index):
     st.rerun()
 
 def create_board():
-  board_data = SUPABASE.table('defaultOTTTDB').select('*').eq('id',game_id).execute().data
+  board_data = SUPABASE.table('defaultOTTTDB').select('*').eq('id',st.session_state.game_id).execute().data
   board = st.container(border=True)
   with board:
     st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
