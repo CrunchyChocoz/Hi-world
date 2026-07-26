@@ -76,7 +76,7 @@ with c3:
       st.write('READY?')
       if st.form_submit_button('ready?'):
         if st.session_state.alias == st.session_state.Player_2:
-          SUPABASE.table('ActivePlayersDB').update({'readyP2':True}).eq('room-id':st.session_state.room_id).execute()
+          SUPABASE.table('ActivePlayersDB').update({'readyP2':True}).eq('room-id',st.session_state.room_id).execute()
           st.success('READY!')
 
 if 'game_start' not in st.session_state:
