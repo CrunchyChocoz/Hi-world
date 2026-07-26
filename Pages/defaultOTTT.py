@@ -93,21 +93,21 @@ if 'turn' not in st.session_state:
   else:
     st.session_state.turn = 'Player_2'
 
-def move(index):
+def move(tile):
   if 'counter' not in st.session_state:
     st.session_state.counter = 1
-    SUPABASE.table('defaultOTTTDB').insert({f'Tile{index}':'X'}).execute()
+    SUPABASE.table('defaultOTTTDB').insert({f'Tile{tile}':'X'}).execute()
   else:
     st.session_state.counter += 1
 
   if st.session_state.counter % 2 == 1:
-    SUPABASE.table('defaultOTTTDB').update({f'Tile{index}':'X'}).eq('id',st.session_state.game_id).execute()
+    SUPABASE.table('defaultOTTTDB').update({f'Tile{tile}':'X'}).eq('id',st.session_state.game_id).execute()
   else:
-    SUPABASE.table('defaultOTTTDB').update({f'Tile{index}':'O'}).eq('id',st.session_state.game_id).execute()
+    SUPABASE.table('defaultOTTTDB').update({f'Tile{tile}':'O'}).eq('id',st.session_state.game_id).execute()
     st.rerun()
 
 def create_board():
-  board_data = SUPABASE.table('defaultOTTTDB').select('*').eq('id',st.session_state.game_id).execute().data
+  board_data = SUPABASE.table('defaultOTTTDB').select('*').eq('id',st.session_state.game_id).execute().data[0]
   board = st.container(border=True)
   with board:
     st.html('''<style> div[data-testid="stLayoutWrapper"]:has(.classic-board)
@@ -133,13 +133,13 @@ def create_board():
     for i in range(0,3):
       columns = st.columns(3)
       for j in range(0,3):
-        index = int(f'{i}{j}')
+        index_str = f'{i}{j}'
         with columns[j]:
-          state = bool(board_data[0][f'Tile{index}'])
+          state = bool(board_data[f'Tile{index_str}'])
           if state:
-            st.write(board_data[0][f'Tile{index}'])
+            st.write(board_data[0][f'Tile{index_str}'])
           else:
-            st.button('',key=f'tile{index}' ,on_click=move, args=(index))
+            st.button('',key=f'tile{index_str}' ,on_click=move, args=(index_str))
 
 def get_game_id():
     query = SUPABASE.table('defaultOTTTDB').insert({})
