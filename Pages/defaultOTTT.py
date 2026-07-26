@@ -10,14 +10,7 @@ if 'refresh' not in st.session_state:
   st.session_state.refresh_counter = 0
   
 @st.fragment(run_every=2)
-def refresh(count):
-    while st.session_state.refresh:
-      if st.session_state.refresh and st.session_state.refresh_counter >= count:
-        break
-      else:
-        st.session_state.refresh_counter +=1
-        print('refreshed')
-        st.rerun()
+st.rerun
   
 if 'room_id' not in st.session_state:
   room_id = random.randint(1000,999999)
