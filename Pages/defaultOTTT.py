@@ -43,10 +43,8 @@ with c1:
         if room_code == room[0]['room-id']:
           st.session_state.room_id = room_code
           st.query_params['room_id'] = room_code
-          st.session_state.Player_1 = SUPABASE.table('ActivePlayersDB').select('Player_1').eq('room-id',room_code).execute().data[0]['Player_1']
-          st.session_state.Player_2 = st.session_state.alias
-          st.success(f"Room ({st.session_state.Player_1}) joined successfully")
           SUPABASE.table('ActivePlayersDB').update({'Player_2':st.session_state.alias, 'status':'connected'}).eq('room-id',room_code).execute()
+          st.success(f"Room ({st.session_state.Player_1}) joined successfully")         
           st.rerun()
         else:
           st.error('NO ROOM FOUND')
@@ -55,6 +53,10 @@ with c1:
 
 status = SUPABASE.table('ActivePlayersDB').select('status').eq('room-id',st.session_state.room_id).execute().data[0]['status']
 st.session_state.status = status
+
+if st.session_state.status == 'connected' and 'Player_2' not in st.session_state:
+  Players = SUPABASE.table('ActivePlayersDB').select('Player_1,Player_2').eq('room-id',st.session_state.room_id).execute().data[0]
+  st.session_state.Player_1, st.session_state.Player_2 = Players['Player_1'], Players['Player_2']
 
 with c2:
   st.markdown(f"<h5 style='text-align: center;'>{st.session_state.Player_1}'s ROOM</h5>", unsafe_allow_html=True)
@@ -83,6 +85,7 @@ with c3:
 if 'game_start' not in st.session_state:
   ready_status = SUPABASE.table('ActivePlayersDB').select('readyP1,readyP2').eq('room-id',st.session_state.room_id).execute().data[0]
   st.session_state.game_start = True if (ready_status['readyP1'] and ready_status['readyP2']) else False
+#------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 if 'turn' not in st.session_state:
   if random.randint(0,1) == 0:
