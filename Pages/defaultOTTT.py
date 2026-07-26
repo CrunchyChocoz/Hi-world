@@ -80,7 +80,7 @@ with c3:
           st.success('READY!')
 
 if 'game_start' not in st.session_state:
-  ready_status = SUPABASE.table('ActivePlayersDB').select('readyP1,readyP2').eq('room-id':st.session_state.room_id).execute.data[0]
+  ready_status = SUPABASE.table('ActivePlayersDB').select('readyP1,readyP2').eq('room-id',st.session_state.room_id).execute.data[0]
   st.session_state.game_start = True if (ready_status['readyP1'] and ready_status['readyP2']) else False
 
 if 'turn' not in st.session_state:
