@@ -1,16 +1,16 @@
 import streamlit as st
+from streamlit_autorefresh import st_autorefresh
 import random
 import time
 import supabase as sb
 
 SUPABASE = sb.create_client(st.secrets['sbURL'],st.secrets['sbPubAPI'])
 
+st_autorefresh(interval=2000)
+
 if 'refresh' not in st.session_state:
   st.session_state.refresh = False
   st.session_state.refresh_counter = 0
-  
-@st.fragment(run_every=2)
-st.rerun()
   
 if 'room_id' not in st.session_state:
   room_id = random.randint(1000,999999)
@@ -52,7 +52,6 @@ with c1:
           st.session_state.readyP2 = False
           st.session_state.status = 'connected'
           st.session_state.refresh = True
-          refresh(30)
           st.rerun()
 
         else:
